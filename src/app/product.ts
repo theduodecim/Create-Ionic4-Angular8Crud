@@ -1,7 +1,8 @@
 export class Product {
-    id: number;
+    // tslint:disable-next-line:variable-name
+    _id: number;
     prodName: string;
     prodDesc: string;
     prodPrice: number;
-    updatedAt: Date;
+    updateAt: Date;
 }

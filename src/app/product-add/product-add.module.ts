@@ -12,10 +12,9 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule,
 } from '@angular/material';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [
   {
@@ -26,7 +25,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    FormControl,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,

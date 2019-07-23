@@ -20,18 +20,22 @@
       <mat-card-content>
         <dl>
           <dt>Product Price:</dt>
-          <dd>{{product.prodPrice}}</dd>
+          <dd>{{product.prodPrice | currency }}</dd>
           <dt>Updated At:</dt>
-          <dd>{{ product.updatedAt | date}}</dd>
+          <dd>{{ product.updateAt | date }}</dd>
         </dl>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-flat-button color="primary" (click)="editProduct(product.id)">
-          <mat-icon>Edit</mat-icon>
-        </a>
-        <a mat-flat-button color="warn" (click)="deleteProduct(product.id)">
-          <mat-icon>Delete</mat-icon>
-        </a>
+        <button (click)="editProduct(product._id)">
+          <i class="material-icons">
+            edit
+          </i>
+        </button>
+        <button (click)="deleteProduct(product._id)">
+          <i class="material-icons">
+            delete
+          </i>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

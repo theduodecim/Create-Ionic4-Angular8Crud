@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-back-button defaultHref="/prodcut-detail/{{id}}"></ion-back-button>
-    <ion-title>Product Edit</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/product-detail/{{_id}}"></ion-back-button>
+      <ion-title>Product Edit</ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -34,7 +36,9 @@
         </mat-form-field>
         <div class="button-row">
           <button type="submit" [disabled]="!productForm.valid" mat-flat-button color="primary">
-            <mat-icon>Save</mat-icon>
+            <i class="material-icons">
+              save
+            </i>
           </button>
         </div>
       </form>

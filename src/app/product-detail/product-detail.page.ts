@@ -6,7 +6,7 @@ import { Product } from '../product';
 
 
 
-
+// tslint:disable:variable-name
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
@@ -15,10 +15,10 @@ import { Product } from '../product';
 export class ProductDetailPage implements OnInit {
   product: Product =
     {
-      id: null, prodName: '',
+      _id: null, prodName: '',
       prodDesc: '',
       prodPrice: null,
-      updatedAt: null
+      updateAt: null
     };
   isLoadingResults = false;
 
@@ -34,14 +34,15 @@ export class ProductDetailPage implements OnInit {
   }
   // getting a single product
   async getProduct() {
-    if (this.route.snapshot.paramMap.get('id') === 'null') {
+    if (this.route.snapshot.paramMap.get('_id') === 'null') {
       this.presentAlertConfirm('You are not choosing an item from the list');
     } else {
       this.isLoadingResults = true;
-      await this.api.getProduct(this.route.snapshot.paramMap.get('id'))
+      await this.api.getProduct(this.route.snapshot.paramMap.get('_id'))
         .subscribe(res => {
           console.log(res);
           this.product = res;
+          this.isLoadingResults = false;
         }, err => {
           console.log(err);
           this.isLoadingResults = false;
@@ -58,15 +59,15 @@ export class ProductDetailPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['']);
+            this.router.navigate(['/']);
           }
         }
       ]
     });
   }
-  async deleteProduct(id: any) {
+  async deleteProduct(_id: any) {
     this.isLoadingResults = true;
-    await this.api.deleteProduct(id).subscribe(res => {
+    await this.api.deleteProduct(_id).subscribe(res => {
       this.isLoadingResults = false;
       this.router.navigate(['/home']);
     }, err => {
@@ -75,8 +76,8 @@ export class ProductDetailPage implements OnInit {
     });
   }
 
-  editProduct(id: any) {
-    this.router.navigate(['/product-edit', id]);
+  editProduct(_id: any) {
+    this.router.navigate(['/product-edit', _id]);
   }
 
 

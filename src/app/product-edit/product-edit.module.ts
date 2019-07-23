@@ -30,7 +30,6 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    FormControl,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)

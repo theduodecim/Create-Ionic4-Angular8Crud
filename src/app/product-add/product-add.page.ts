@@ -40,9 +40,9 @@ export class ProductAddPage implements OnInit {
   onFormSubmit() {
     this.isLoadingResults = true;
     this.api.addProduct(this.productForm.value).subscribe((res) => {
-      const id = res.id;
+      const _id = res._id;
       this.isLoadingResults = false;
-      this.router.navigate(['/product-details', id]);
+      this.router.navigate(['/product-detail', _id]);
     }, (err) => {
       console.log(err);
       this.isLoadingResults = false;

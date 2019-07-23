@@ -17,10 +17,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './product-edit.page.html',
   styleUrls: ['./product-edit.page.scss'],
 })
-
+// tslint:disable:variable-name
 export class ProductEditPage implements OnInit {
   productForm: FormGroup;
-  id = '';
+  _id = '';
   prodName = '';
   prodDesc = '';
   prodPrice: number = null;
@@ -30,7 +30,7 @@ export class ProductEditPage implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, public api: ApiService, public formBulder: FormBuilder) { }
 
   ngOnInit() {
-    this.getProduct(this.route.snapshot.params[`id`]);
+    this.getProduct(this.route.snapshot.params[`_id`]);
     this.productForm = this.formBulder.group({
       prodName: [null, Validators.required],
       prodDesc: [null, Validators.required],
@@ -39,9 +39,10 @@ export class ProductEditPage implements OnInit {
   }
 
 
-  getProduct(id: any) {
-    this.api.getProduct(id).subscribe((res: any) => {
-      this.id = res.id;
+
+  getProduct(_id: any) {
+    this.api.getProduct(_id).subscribe((res: any) => {
+      this._id = res._id;
       this.productForm.setValue({
         prodName: res.prodName,
         prodDesc: res.prodDesc,
@@ -52,17 +53,17 @@ export class ProductEditPage implements OnInit {
 
   onFormSubmit() {
     this.isLoadingResults = true;
-    this.api.updateProduct(this.id, this.productForm.value).subscribe(res => {
-      const resId = res.id;
+    this.api.updateProduct(this._id, this.productForm.value).subscribe(res => {
+      const resId = res._id;
       this.isLoadingResults = false;
-      this.router.navigate(['/product-details', resId]);
+      this.router.navigate(['/product-detail', resId]);
     }, (err: any) => {
       console.log(err);
       this.isLoadingResults = false;
     });
   }
   productDetail() {
-    this.router.navigate(['/product-details', this.id]);
+    this.router.navigate(['/product-detail', this._id]);
   }
 
 
